@@ -62,3 +62,38 @@ h2 {
 .productList:hover * {
   color: white;
 }
+.hidePopup {
+  height: 0;
+}
+#popup {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  z-index: 999;
+  background-color: #00000073;
+  top: 0;
+  bottom: 0;
+}
+.showPopup {
+  height: auto;
+}
+#popupContent {
+  background-color: white;
+  width: 42%;
+  position: fixed;
+  right: 29%;
+  top: 50px;
+  border-radius: 12px;
+
+  height: 0;
+  transition: height 0.5s;
+}
+#viewDetailProduct,
+#editProduct,
+#addProduct {
+  height: 0;
+  overflow: hidden;
+}
+.editBar {
+  height: fit-content;
+}

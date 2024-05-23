@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Product Managment</title>
-    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
     <header id="myHeader">
@@ -21,7 +21,8 @@
     <main class="row m-0">
         <div class="product col-12 row">
             <div class=" col-9 row" >
-                <h1>Danh sách sản phẩm</h1>
+                <h1 class="col-10">Danh sách sản phẩm</h1>
+                <div class="col-2 text-end" id="addProductBtn"><button class="btn btn-sm btn-primary mt-2" onclick="showAddPrd()">Thêm sản phẩm</button></div>
                 <div class=" col-12 row">
                     <div class="row col-12 prdHead">
                     <div class="col-1">ID</div>
@@ -35,14 +36,54 @@
                 <div class="prd col-12 row" id="productListHere"></div>
             </div>
             <div class="editBar col-3 row">
-                <h2>Xem/Cập nhật sản phẩm</h2>
-                <div class="col-12">Something here</div>
+                
+                <div id="viewDetailProduct"></div>
+                <div id="editProduct"></div>
+                <div id="addProduct" class="bg-light rounded-3 shadow-sm">
+                    <h3 class="pt-2">Thêm sản phẩm</h3>
+                    <form id="addProductForm" method="post" onsubmit="return addProduct(this)">
+                        <div class="form-group">
+                          <label for="">Tên điện thoại</label>
+                          <input type="text"
+                            class="form-control form-control-sm" name="phoneName" id="phoneName" aria-describedby="helpId" placeholder="">
+                          <small class="text-danger"  id="phoneNameAl" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mô tả</label>
+                            <input type="text"
+                              class="form-control form-control-sm" name="phoneDescription" id="phoneDescription" aria-describedby="helpId" placeholder="">
+                            <small class="text-danger"  id="phoneDescriptionAl" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                          <label for="">Hệ điều hành</label>
+                          <input type="text"
+                          class="form-control form-control-sm" name="HDH" id="HDH" aria-describedby="helpId" placeholder="">
+                          <small class="text-danger"  id="HDHAl" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Pin</label>
+                            <input type="text"
+                              class="form-control form-control-sm" name="pin" id="pin" aria-describedby="helpId" placeholder="">
+                            <small class="text-danger"  id="pinAl" class="form-text text-muted"></small>
+                          </div>
+                          <button type="submit" class="btn btn-primary btn-sm mt-3">Thêm</button>
+                    </form>
+                </div>
+           
             </div>
         </div>
-   
+        <div class="popup hidePopup" id="popup">
+            <div id="popupContent" class="row">
+
+            </div>
+        </div>
+
     </main>
+
 </body>
 <script>
  showProduct('productListHere',productList);
+
+
 </script>
 </html>
