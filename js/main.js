@@ -25,6 +25,24 @@ class Phone{
     getPhoto(){
         return this.photo;
     }
+    setID(newID){
+        this.id = newID;
+    }
+    setName(newName){
+       this.name = newName;
+    }
+    setDescription(newDes){
+         this.description = newDes;
+    }
+    setOperatingSystem(newOpe){
+         this.operatingSystem = newOpe;
+    }
+    setBatteryType(newPin){
+        this.batteryType = newPin;
+    }
+    setPhoto(newPhoto){
+        this.photo = newPhoto;
+    }
 }
 //-----------------------------------------------------SEPARATOR-----------------------------------------------------
 //Function
@@ -46,8 +64,8 @@ function randInteger(min, max) {
         +'<div class="col-2 operating">'+phone.getOperatingSystem()+'</div>'
         +'<div class="col-2 battery">'+phone.getBatteryType()+'</div>'
         +'<div class="col-3 crudHere">'
-        + '<button type="" onclick="viewProduct('+phone.getID()+')"><i class="bi bi-eye-fill"></i></button>'
-        + '<button type="" onclick="editProduct('+phone.getID()+')"><i class="bi bi-pencil-square"></i></button>'
+   
+        + '<button type="" onclick="showEditPrd('+phone.getID()+')"><i class="bi bi-pencil-square"></i></button>'
         + '<button type="" onclick="showPopup('+popupID+','+phone.getID()+')"><i class="bi bi-x-circle-fill"></i></button>'
         +'</div>'
         +'</div>';
@@ -70,6 +88,7 @@ function deleteProduct(productID){
     hidePopup();
     showProduct('productListHere',productList);
 }
+
 function showPopup(id,productID){
    //console.log(id);
     let productName = getProductByID(productID).getName();
@@ -110,8 +129,7 @@ function showAddPrd(){
     showPrd.style.height = 'auto';
     editPrd.style.height = '0';
 }
-function addProduct(form){
- 
+function validateForm(form){
     let phoneName = form.querySelector('#phoneName').value;
     let nameEr = form.querySelector('#phoneNameAl');
 
@@ -152,7 +170,22 @@ function addProduct(form){
         pinEr.innerHTML = "";
      }
 
+     return true;
+}
+function addProduct(form){
+
+    let validate = validateForm(form);
+    if(!validate){
+        return false;
+    }
+
+    let phoneName = form.querySelector('#phoneName').value;
+    let phoneDescription = form.querySelector('#phoneDescription').value;
+    let HDH = form.querySelector('#HDH').value;
+    let pin = form.querySelector('#pin').value;
+
      //create new product ID
+  
      let newID = productList[productList.length-1].getID()+1;
      console.log(newID);
      let newPhone = new Phone(
@@ -172,6 +205,50 @@ function addProduct(form){
      return false;
    
    
+}
+function showEditPrd(id){
+    let showPrd = document.getElementById('addProduct');
+    let editPrd = document.getElementById('editProduct');
+    showPrd.style.height = '0';
+    editPrd.style.height = 'auto';
+    editPrd.querySelector('#productID').value = id;
+
+    for (let index = 0; index < productList.length; index++) {
+        if(productList[index].getID() == id){
+            var product =  productList[index]
+        } 
+    }
+    editPrd.querySelector('#phoneName').value = product.getName();
+    editPrd.querySelector('#phoneDescription').value = product.getDescription();
+    editPrd.querySelector('#HDH').value = product.getOperatingSystem();
+    editPrd.querySelector('#pin').value = product.getBatteryType();
+}
+function editProduct(form){
+    let validate = validateForm(form);
+    if(!validate){
+        return false;
+    }
+    let id = form.querySelector('#productID').value;
+    let phoneName = form.querySelector('#phoneName').value;
+    let phoneDescription = form.querySelector('#phoneDescription').value;
+    let HDH = form.querySelector('#HDH').value;
+    let pin = form.querySelector('#pin').value;
+
+    for (let index = 0; index < productList.length; index++) {
+        if(productList[index].getID() == id){
+            var product =  productList[index]
+        } 
+    }
+    product.setName(phoneName);
+    product.setDescription(phoneDescription);
+    product.setOperatingSystem(HDH);
+    product.setBatteryType(pin);
+
+    
+     showProduct('productListHere',productList);
+     alert('Bạn đã sửa sản phẩm');
+     return false;
+    
 }
 //-----------------------------------------------------SEPARATOR-----------------------------------------------------
   

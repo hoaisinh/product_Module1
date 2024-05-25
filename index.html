@@ -14,7 +14,7 @@
     <div class="row m-0">
         <div class="col-4">C0324</div>
         <div class="col-8 row">
-            Nav Bar
+            Something here
         </div>
     </div>
     </header>
@@ -38,12 +38,45 @@
             <div class="editBar col-3 row">
                 
                 <div id="viewDetailProduct"></div>
-                <div id="editProduct"></div>
+                <div id="editProduct">
+                    <h3 class="pt-2">Chỉnh sửa thông tin sản phẩm</h3>
+                    <form id="editProductForm" method="post" onsubmit="return editProduct(this)">
+                        <input type="hidden" id="productID"  name="" value="">
+                        <div class="form-group">
+                          <label for="">Tên điện thoại</label>
+                          <input type="text"
+                            class="form-control form-control-sm" name="phoneName" id="phoneName" aria-describedby="helpId" placeholder="">
+                          <small class="text-danger"  id="phoneNameAl" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mô tả</label>
+                            <input type="text"
+                              class="form-control form-control-sm" name="phoneDescription" id="phoneDescription" aria-describedby="helpId" placeholder="">
+                            <small class="text-danger"  id="phoneDescriptionAl" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                          <label for="">Hệ điều hành</label>
+                          <input type="text"
+                          class="form-control form-control-sm" name="HDH" id="HDH" aria-describedby="helpId" placeholder="">
+                          <small class="text-danger"  id="HDHAl" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Pin</label>
+                            <input type="text"
+                              class="form-control form-control-sm" name="pin" id="pin" aria-describedby="helpId" placeholder="">
+                            <small class="text-danger"  id="pinAl" class="form-text text-muted"></small>
+                          </div>
+                          <button type="submit" class="btn btn-primary btn-sm mt-3">Thêm</button>
+                    </form>
+
+                </div>
                 <div id="addProduct" class="bg-light rounded-3 shadow-sm">
                     <h3 class="pt-2">Thêm sản phẩm</h3>
                     <form id="addProductForm" method="post" onsubmit="return addProduct(this)">
+                      
                         <div class="form-group">
                           <label for="">Tên điện thoại</label>
+                          
                           <input type="text"
                             class="form-control form-control-sm" name="phoneName" id="phoneName" aria-describedby="helpId" placeholder="">
                           <small class="text-danger"  id="phoneNameAl" class="form-text text-muted"></small>
@@ -83,7 +116,8 @@
 </body>
 <script>
  showProduct('productListHere',productList);
-
+    let editProductForm = document.getElementById('editProductForm');
+    
 
 </script>
 </html>
